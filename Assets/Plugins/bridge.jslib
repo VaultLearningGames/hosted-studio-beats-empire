@@ -1,36 +1,26 @@
-// Saves stay in this browser's localStorage (no sign-in, no cloud saves); gameplay logging is off.
+// Saves go through window.BeatsSaves (Assets/WebGLTemplates/VaultTemplate/main.js): this browser first, then the
+// player code service. Gameplay logging is off.
 mergeInto(LibraryManager.library, {
   PersistFirebase: function(json) {
   },
   SaveData: function(json) {
     json = Pointer_stringify(json);
-    try {
-      window.localStorage.setItem('beats-empire/save', json);
-    } catch (e) {
-      console.log("[save] not saved:", e);
-      return;
-    }
+    if (!window.BeatsSaves.save(json)) return;
     setTimeout(function() {
       SendMessage('Game Controller', 'IndicateSave');
     }, 0);
   },
   LoadData: function() {
-    var save = null;
-    try {
-      save = window.localStorage.getItem('beats-empire/save');
-    } catch (e) {
-      console.log("[save] can't read saves:", e);
-    }
-    // "null" when there is no save, as the Firebase load sent.
+    var save = window.BeatsSaves.load();
     setTimeout(function() {
-      SendMessage('Game Controller', 'LoadCallback', save == null ? 'null' : save);
+      SendMessage('Game Controller', 'LoadCallback', save);
     }, 0);
   },
   PendingSavesCount: function() {
-    return 0;
+    return window.BeatsSaves.pending();
   },
   FirebaseUserID: function() {
-    var id = '';
+    var id = window.BeatsSaves.code();
     var bufferSize = lengthBytesUTF8(id) + 1;
     var buffer = _malloc(bufferSize);
     stringToUTF8(id, buffer, bufferSize);
