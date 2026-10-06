@@ -1,0 +1,44 @@
+{
+  "title": "Beats Empire",
+  "short_description": "Run a music studio in a city full of data. Study what listeners want, sign artists, and record songs that climb the charts.",
+  "about": "Step into the role of a music producer in a city where every neighborhood has its own taste. In *Beats Empire*, students run a small studio and record label: they sign artists, record songs, and invest in market research, using data about listeners' favorite genres, moods and topics to decide what to make next.\n\nEvery song is a prediction tested against the market. Students decide what data to collect and how much to store, read bar charts, line graphs and maps of listener trends, and watch their choices play out on the Top Charts. No coding required.\n\n**In this game, students will:**\n\n- Analyze and interpret data about listeners' preferences across six boroughs\n- Use bar charts, line graphs and maps to spot trends and make predictions\n- Decide what data to collect and store, and weigh what it costs\n- Connect data, decisions and outcomes as their label grows\n\nA first session takes 15–20 minutes and later rounds 5–10; the designers suggest 4–6 sessions over 2–3 class periods. Each player gets a player code to pick up their game on any computer.\n\n*Beats Empire* was created by learning scientists at Teachers College, Columbia University, SRI International, the University of Wisconsin–Madison, Georgia Tech and Digital Promise, with Filament Games, and funded by the National Science Foundation. It won a 2020 GEE! Award (Judges' Choice) and a 2019 Serious Play silver award.",
+  "makers": [
+    "Teachers College, Columbia University",
+    "Filament Games"
+  ],
+  "grades": [
+    "Grades 5-8"
+  ],
+  "subjects": [
+    "Information Technology",
+    "Math",
+    "Social Studies"
+  ],
+  "topics": [
+    "Computer Science",
+    "Graphing",
+    "Business",
+    "Economics"
+  ],
+  "standards": [
+    "2-DA-07",
+    "2-DA-08",
+    "2-DA-09",
+    "6.SP.B.5"
+  ],
+  "related_curriculum": "https://info.beatsempire.org/use-in-your-classroom/",
+  "gameplay_video": "",
+  "hero_image": "vault/listing/images/hero.jpg",
+  "thumb_image": "vault/listing/images/thumb.jpg",
+  "screenshots": [
+    "vault/listing/images/screenshot-1-trends.jpg",
+    "vault/listing/images/screenshot-2-recording.jpg",
+    "vault/listing/images/screenshot-3-results.jpg",
+    "vault/listing/images/screenshot-4-top-charts.jpg",
+    "vault/listing/images/screenshot-5-artists.jpg"
+  ],
+  "play_source": "cdn",
+  "play_url": "",
+  "cdn_path": "",
+  "embed": true
+}
