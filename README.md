@@ -1,7 +1,11 @@
-# external-beats-empire
- Beats Empire build for others to use
+# Beats Empire
+A GEE! Award winning computer science and data usage game.
+See https://info.beatsempire.org/
+National Science Foundation under Grant No. 1742011 & 1741956
+Beats Empire is licensed as CC BY-NC-SA 4.0.
 
-## Vault
+
+## Building and Publishing to Vault
 
 GitHub Actions (`.github/workflows/vault.yml`): every push builds WebGL with Unity 2018.4.36f1 and publishes it to
 [Vault](https://vaultlearninggames.org) as the Teachers College, Columbia University studio, at
