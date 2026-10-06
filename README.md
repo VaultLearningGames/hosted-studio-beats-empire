@@ -52,7 +52,7 @@ carries a copy of the game state, and that copy is large when `includeAllData` i
 
 | Always included | Only when `includeAllData` is true ("verbose") |
 | --- | --- |
-| `GameVersion` ("Version 1.04"), `CMSLogVersion` ("1.11"), `lastChangedDate`, `isLogVerbose`, `epochTime`, `realTimeUTC`, `upTimeSeconds`, `saveGameStartDate`, `gameSeed`, `playerUniqueID` (MD5 of the e-mail), `userEmail`; `triggerAction`, `actionValue`, `currentTurn`, `currentCash`, `recordingsInProgress`, `currentFans`, `currentScreen` | Device and system: `deviceModel`, `deviceName`, `deviceType`, `deviceUniqueIdentifier`, memory, OS, battery, processor, graphics device. Game: last week's storage costs, residual cash, band upkeep and sales; every signed band (with its recording song) and unsigned band; unconfirmed, confirmed and past marketing insights; marketing unlock levels per borough and genre; every released song's chart record; gold/platinum status per genre; and the latest market value of every genre, mood and topic in each of 6 locations |
+| `GameVersion` ("Version 1.1"), `CMSLogVersion` ("1.11"), `lastChangedDate`, `isLogVerbose`, `epochTime`, `realTimeUTC`, `upTimeSeconds`, `saveGameStartDate`, `gameSeed`, `playerUniqueID` (MD5 of the e-mail), `userEmail`; `triggerAction`, `actionValue`, `currentTurn`, `currentCash`, `recordingsInProgress`, `currentFans`, `currentScreen` | Device and system: `deviceModel`, `deviceName`, `deviceType`, `deviceUniqueIdentifier`, memory, OS, battery, processor, graphics device. Game: last week's storage costs, residual cash, band upkeep and sales; every signed band (with its recording song) and unsigned band; unconfirmed, confirmed and past marketing insights; marketing unlock levels per borough and genre; every released song's chart record; gold/platinum status per genre; and the latest market value of every genre, mood and topic in each of 6 locations |
 
 ### Suggested envelope (every event)
 
@@ -61,7 +61,7 @@ carries a copy of the game state, and that copy is large when `includeAllData` i
 | `game_id` | `BEATS_EMPIRE` |
 | `player_id` (`user_id` in the logger) | the player code (`BeatsSaves.code()`), or empty when playing without one |
 | `session_id`, `timestamp`, `session_sequence_index` | set by the OGD logger |
-| `game_version` / `source_version` | `PlayerInformation.versionNum` as SemVer (`1.04` → `1.4.0`) |
+| `game_version` / `source_version` | `PlayerInformation.versionNum` as SemVer (`1.1` → `1.1.0`) |
 | `log_version` | `2` (the Firebase log was `CMSLogVersion` 1.11) |
 | `schema_version` | `1.0` |
 | `event_name` | the suggested name in the tables below |

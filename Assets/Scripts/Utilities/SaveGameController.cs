@@ -150,7 +150,7 @@ public class SaveGameController : MonoBehaviour {
 
 	public void CurrGameToSaveData(MusicStudioSave saveData, bool isEndGame)
 	{
-		saveData.saveGameVersion = "V1.01";
+		saveData.saveGameVersion = "V1.1";
 		Debug.Log(System.DateTime.Now.ToString());
 		if (dateCreated == null || dateCreated == "")
 		{
