@@ -519,7 +519,7 @@ PlayerSettings:
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 0
+  scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform:
     Standalone: 2
   m_RenderingPath: 1
@@ -606,7 +606,7 @@ PlayerSettings:
   facebookStatus: 1
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 4bca9571-e7d7-4bc9-bc92-f5fb336a7cc2
   framebufferDepthMemorylessMode: 0
   projectName: MusicStudio
