@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beats Empire</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="TemplateData/Favicon.ico">
+
+  <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+  <script type="text/javascript">
+  var buildUrl = '%UNITY_WEBGL_BUILD_URL%';
+  </script>
+</head>
+<body>
+<div class="webgl-content">
+
+    <div id="splash-container">
+        <center><img src="Images/LandingPageLogo.png" alt="Beats Empire"></center>
+        <div id="grey-bar"></div>
+    </div>
+
+    <div id="panel">
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+            <div id="progress-bar-outline"></div>
+        </div>
+        <div id="loading-text">LOADING GAME</div>
+
+        <!-- Choose a player code while the game loads. -->
+        <form id="code-panel" autocomplete="off">
+            <label for="code-input">Have a player code? Type it to continue your game.</label>
+            <div class="row">
+                <input type="text" id="code-input" placeholder="e.g. AnimalBat" spellcheck="false" autocapitalize="off">
+                <input type="submit" id="continue-button" class="button" value="Continue">
+            </div>
+            <div class="or">or</div>
+            <input type="button" id="new-player-button" class="button" value="I'm new: get a player code">
+            <div id="code-message" role="status"></div>
+        </form>
+
+        <div id="play-prompt">
+            <div id="code-banner"></div>
+            <input type="button" id="play-button" class="button" value="Play" disabled>
+        </div>
+    </div>
+
+    <div id="game-container"></div>
+    <div id="code-tag"></div>
+</div>
+
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

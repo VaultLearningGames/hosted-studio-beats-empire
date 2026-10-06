@@ -1,0 +1,63 @@
+name: Beats Empire Build & Publish
+
+# Builds the Unity project for WebGL and publishes it to Vault's test-build CDN as the Teachers College, Columbia
+# University studio:
+#   https://builds.vaultlearninggames.org/tc-columbia/beats-empire/<branch or tag>/
+# Deleting a branch removes its preview.
+#
+# Vault knows this repository belongs to Teachers College because the portal assigns it to that studio
+# (Vault → Studios → Teachers College, Columbia University → Repositories that publish for this studio, or
+# studios.json in VaultLearningGames/vault-publisher). Without that, a VaultLearningGames repository publishes as the
+# "vault" studio, which the `check-studio` job below reports as a failure.
+#
+# Unity: the editor version is ProjectSettings/ProjectVersion.txt (2018.4.36f1). The UNITY_EMAIL, UNITY_PASSWORD and
+# UNITY_SERIAL repository secrets activate it.
+#
+# Releases: push a version tag (e.g. v1.0), test it, then Request release in the portal.
+on:
+  push:
+  delete:
+  workflow_dispatch:
+
+# publish-preview.yml authenticates to the portal with this workflow's OIDC token; a called workflow can't be given
+# more than its caller has, so id-token is granted here.
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    if: github.event_name != 'delete'
+    uses: VaultLearningGames/vault-publisher/.github/workflows/unity-build.yml@v1
+    secrets:
+      UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+
+  preview:
+    needs: build
+    uses: VaultLearningGames/vault-publisher/.github/workflows/publish-preview.yml@v1
+    with:
+      game: beats-empire
+      artifact: ${{ needs.build.outputs.artifact }}
+
+  # The portal decides the studio from the repository. Fail loudly if the build landed anywhere else.
+  check-studio:
+    needs: preview
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+    - name: Published as Teachers College, Columbia University
+      env:
+        URL: ${{ needs.preview.outputs.url }}
+      run: |
+        case "$URL" in
+          */tc-columbia/beats-empire/*) echo "Published to $URL" ;;
+          *) echo "::error::Published to $URL, not to tc-columbia/beats-empire: this repository isn't assigned to the Teachers College studio in the Vault portal."; exit 1 ;;
+        esac
+
+  remove-preview:
+    if: github.event_name == 'delete'
+    uses: VaultLearningGames/vault-publisher/.github/workflows/publish-preview.yml@v1
+    with:
+      game: beats-empire
