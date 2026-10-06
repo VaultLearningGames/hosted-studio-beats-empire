@@ -7,7 +7,7 @@ public static class PlayerInformation
 {
 	public static bool isNewGame;
 	public static bool isMuted;
-	public static string versionNum = "Version 1.04";
+	public static string versionNum = "Version 1.1";
 }
 
 public class FadeOutTitleMusic : MonoBehaviour {
