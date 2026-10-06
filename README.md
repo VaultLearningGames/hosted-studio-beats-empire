@@ -10,6 +10,10 @@ preview. To release, push a version tag, test it, then *Request release* in the
 [Vault Studio Portal](https://portal.vaultlearninggames.org). The Unity license comes from the `UNITY_EMAIL`,
 `UNITY_PASSWORD` and `UNITY_SERIAL` repository secrets.
 
+Branches: work goes to `master` (test build at `…/tc-columbia/beats-empire/master/`), and `master` is merged into
+`production` (`…/production/`) for the version teachers will get. Neither branch asks Vault for a release; that's a
+*Request release* in the portal, when Teachers College decides to publish.
+
 The WebGL page (`Assets/WebGLTemplates/VaultTemplate`) has no sign-in. While the game loads, players type their
 player code to continue, or get a new one from the player code service
 (`fieldday-web.wcer.wisc.edu/wsgi-bin/opengamedata.wsgi/player/`). Every save is written to the browser's
