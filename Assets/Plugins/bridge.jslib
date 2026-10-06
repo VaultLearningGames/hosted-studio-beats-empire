@@ -1,38 +1,44 @@
+// Saves stay in this browser's localStorage (no sign-in, no cloud saves); gameplay logging is off.
 mergeInto(LibraryManager.library, {
   PersistFirebase: function(json) {
-    json = Pointer_stringify(json);
-    var save = database.ref('users/' + uid + '/logs').push();
-    save.set(JSON.parse(json)); 
   },
-  SaveData: function(json){
-    ++nPendingSaves;
-    console.log("+nPendingSaves", nPendingSaves);
+  SaveData: function(json) {
     json = Pointer_stringify(json);
-    database.ref('users/' + uid + '/saves').set(JSON.parse(json)).then(function() {
-      --nPendingSaves;
-      console.log("-nPendingSaves", nPendingSaves);
+    try {
+      window.localStorage.setItem('beats-empire/save', json);
+    } catch (e) {
+      console.log("[save] not saved:", e);
+      return;
+    }
+    setTimeout(function() {
       SendMessage('Game Controller', 'IndicateSave');
-    });
+    }, 0);
   },
   LoadData: function() {
-    database.ref('users/' + uid + '/saves').once('value').then(function(snapshot) {
-      console.log(snapshot.val());
-      SendMessage('Game Controller', 'LoadCallback', JSON.stringify(snapshot.val()));
-    }, function (error) {
-       console.log("Error: " + error.code);
-    });
+    var save = null;
+    try {
+      save = window.localStorage.getItem('beats-empire/save');
+    } catch (e) {
+      console.log("[save] can't read saves:", e);
+    }
+    // "null" when there is no save, as the Firebase load sent.
+    setTimeout(function() {
+      SendMessage('Game Controller', 'LoadCallback', save == null ? 'null' : save);
+    }, 0);
   },
   PendingSavesCount: function() {
-    return nPendingSaves;
+    return 0;
   },
   FirebaseUserID: function() {
-    var bufferSize = lengthBytesUTF8(uid) + 1;
+    var id = '';
+    var bufferSize = lengthBytesUTF8(id) + 1;
     var buffer = _malloc(bufferSize);
-    stringToUTF8(uid, buffer, bufferSize);
+    stringToUTF8(id, buffer, bufferSize);
     return buffer;
   },
   FirebaseUserEmail: function() {
-    var bufferSize = lengthBytesUTF8(uid) + 1;
+    var email = '';
+    var bufferSize = lengthBytesUTF8(email) + 1;
     var buffer = _malloc(bufferSize);
     stringToUTF8(email, buffer, bufferSize);
     return buffer;

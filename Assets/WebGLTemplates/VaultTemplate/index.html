@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beats Empire</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="TemplateData/Favicon.ico">
+
+  <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+  <script type="text/javascript">
+  var buildUrl = '%UNITY_WEBGL_BUILD_URL%';
+  </script>
+</head>
+<body>
+<div class="webgl-content">
+
+    <div id="splash-container">
+        <center><img src="Images/LandingPageLogo.png" alt="Beats Empire"></center>
+        <div id="grey-bar"></div>
+    </div>
+
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+        <div id="progress-bar-outline"></div>
+        <div id="loading-text"><center>LOADING GAME</center></div>
+    </div>
+
+    <div id="play-prompt-container">
+        <div id="play-prompt">
+            <input type="button" id="play-button" value="Play">
+        </div>
+    </div>
+
+    <div id="game-container"></div>
+</div>
+
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
