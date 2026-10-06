@@ -1,0 +1,9 @@
+{
+  "name": "beats-empire-tests",
+  "private": true,
+  "type": "module",
+  "description": "Browser tests for the Vault WebGL build (see player-codes.mjs)",
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

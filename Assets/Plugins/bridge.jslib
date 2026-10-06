@@ -1,38 +1,34 @@
+// Saves go through window.BeatsSaves (Assets/WebGLTemplates/VaultTemplate/main.js): this browser first, then the
+// player code service. Gameplay logging is off.
 mergeInto(LibraryManager.library, {
   PersistFirebase: function(json) {
-    json = Pointer_stringify(json);
-    var save = database.ref('users/' + uid + '/logs').push();
-    save.set(JSON.parse(json)); 
   },
-  SaveData: function(json){
-    ++nPendingSaves;
-    console.log("+nPendingSaves", nPendingSaves);
+  SaveData: function(json) {
     json = Pointer_stringify(json);
-    database.ref('users/' + uid + '/saves').set(JSON.parse(json)).then(function() {
-      --nPendingSaves;
-      console.log("-nPendingSaves", nPendingSaves);
+    if (!window.BeatsSaves.save(json)) return;
+    setTimeout(function() {
       SendMessage('Game Controller', 'IndicateSave');
-    });
+    }, 0);
   },
   LoadData: function() {
-    database.ref('users/' + uid + '/saves').once('value').then(function(snapshot) {
-      console.log(snapshot.val());
-      SendMessage('Game Controller', 'LoadCallback', JSON.stringify(snapshot.val()));
-    }, function (error) {
-       console.log("Error: " + error.code);
-    });
+    var save = window.BeatsSaves.load();
+    setTimeout(function() {
+      SendMessage('Game Controller', 'LoadCallback', save);
+    }, 0);
   },
   PendingSavesCount: function() {
-    return nPendingSaves;
+    return window.BeatsSaves.pending();
   },
   FirebaseUserID: function() {
-    var bufferSize = lengthBytesUTF8(uid) + 1;
+    var id = window.BeatsSaves.code();
+    var bufferSize = lengthBytesUTF8(id) + 1;
     var buffer = _malloc(bufferSize);
-    stringToUTF8(uid, buffer, bufferSize);
+    stringToUTF8(id, buffer, bufferSize);
     return buffer;
   },
   FirebaseUserEmail: function() {
-    var bufferSize = lengthBytesUTF8(uid) + 1;
+    var email = '';
+    var bufferSize = lengthBytesUTF8(email) + 1;
     var buffer = _malloc(bufferSize);
     stringToUTF8(email, buffer, bufferSize);
     return buffer;
